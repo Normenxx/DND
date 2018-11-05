@@ -4,6 +4,8 @@ public class Main {
         System.out.println("asdihasd");
 
         if () {
+
+
             System.out.println();
         }
     }
