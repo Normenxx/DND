@@ -11,7 +11,7 @@ class DND2
 	int event = 1;
 	int runde = 1;
 	int monsterArt;
-	Integer mosterskill2 = 1;
+	int alterSkill =  100;
 	Integer monsterSkill;
 
 	
@@ -62,7 +62,7 @@ class DND2
 		if (hauptMenu.equals("1"))
 		{
 		    status.menu(player.name, player.gold, player.curHp, player.maxHp, player.str, player.as);
-		    //player.bild();
+		    player.bild();
 		}
 		
 		// Nachster Raum
@@ -84,10 +84,20 @@ class DND2
 				// Kampf
 				while (combatExit > 0 && !(monster.curHp <= 0) && !(player.curHp <= 0))
 				{
-					//Monster w�hlt Skill aus
+					//Monster wahlt Skill aus
+					do
+					{
+							monsterSkill = rand.nextInt(3) + 1;
+							// 1 Angriff
+							// 2 Block
+							// 3 Buff
+					}
+					while
+					(		monsterSkill == 2 && alterSkill == 2 ||  				 			// Das Monster darf nicht 2 mal hintereinander Blocken
+							monsterSkill == 3 && !(alterSkill == 2)							// Das Monster darf sich nicht Buffen ohne Verteidigung
+					);
 
-					monsterSkill = rand.nextInt(3)+1;
-
+					alterSkill = monsterSkill;
 
 					//Status Kampf
 					status.kampf(player.name,player.curHp, player.maxHp, player.shield, player.curStr, player.curAs,monster.name,monster.curHp, monster.maxHp, monster.shield, monster.curStr, monster.curAs);

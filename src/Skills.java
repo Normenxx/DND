@@ -147,7 +147,7 @@ class Skills
 		//Leichter Stärke Buff
 		else if (skillNr.equals("3"))
 		{
-			curStrAngreifer = curStrAngreifer + 1;
+			curStrAngreifer = curStrAngreifer + 3;
 			System.out.println(textAngreifer + " hat seine Starke um 1 erhoht");
 		}
 
