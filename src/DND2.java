@@ -4,7 +4,7 @@ class DND2
 {
    public static void main(String[] args) 
    {
-	//Test push Laptop
+
 	//Variablen
 	int charExit = 1;
 	int combatExit = 1;
