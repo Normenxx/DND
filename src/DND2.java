@@ -4,7 +4,7 @@ class DND2
 {
    public static void main(String[] args) 
    {
-	
+	//Test push
 	//Variablen
 	int charExit = 1;
 	int combatExit = 1;
@@ -14,8 +14,8 @@ class DND2
 	int alterSkill =  100;
 	Integer monsterSkill;
 
-	
-	//Men� Objekte
+
+	//Menu Objekte
 	String hauptMenu,combatMenu,eingabeKampf;
 	String trenner = "------------------------------------";
 	
