@@ -1,7 +1,7 @@
 class Player
 {
 	String name,klasse;
-	
+
 	int maxHp;
 	int curHp;
 	int str;

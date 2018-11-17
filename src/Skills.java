@@ -5,6 +5,7 @@ class Skills
 	
 	private int curHpAngreifer;
 	private int maxHpAngreifer;
+	private int manaAngreifer;
 	private int shieldAngreifer;
 	private int curStrAngreifer;
 	private int curAsAngreifer;
@@ -12,6 +13,7 @@ class Skills
 	
 	private int curHpVerteidiger;
 	private int maxHpVerteidiger;
+	private int manaVerteidiger;
 	private int shieldVerteidiger;
 	private int curStrVerteidiger;
 	private int curAsVerteidiger;
@@ -29,12 +31,14 @@ class Skills
 			curHpAngreifer = player.curHp;
 			maxHpAngreifer = player.maxHp;
 			shieldAngreifer = player.shield;
+			manaAngreifer = player.mana;
 			curStrAngreifer = player.curStr;
 			curAsAngreifer = player.curAs;
 			textAngreifer = "Der Spieler";
 
 			curHpVerteidiger = monster.curHp;
 			maxHpVerteidiger = monster.maxHp;
+			manaVerteidiger = monster.mana;
 			shieldVerteidiger = monster.shield;
 			curStrVerteidiger = monster.curStr;
 			curAsVerteidiger = monster.curAs;
@@ -44,6 +48,7 @@ class Skills
 		{
 			curHpAngreifer = monster.curHp;
 			maxHpAngreifer = monster.maxHp;
+			manaAngreifer = monster.mana;
 			shieldAngreifer = monster.shield;
 			curStrAngreifer = monster.curStr;
 			curAsAngreifer = monster.curAs;
@@ -51,6 +56,7 @@ class Skills
 
 			curHpVerteidiger = player.curHp;
 			maxHpVerteidiger =  player.maxHp;
+			manaVerteidiger = monster.mana;
 			shieldVerteidiger =  player.shield;
 			curStrVerteidiger =  player.curStr;
 			curAsVerteidiger =  player.curAs;
@@ -76,7 +82,7 @@ class Skills
 		//Leichter Block
 		else if (skillNr.equals("2"))
 		{
-			shieldAngreifer = shieldAngreifer + 10;
+			shieldAngreifer = shieldAngreifer + 5;
 			System.out.println(textAngreifer + " schutzt sich in der nachsten Runde vor " + shieldAngreifer + " schaden");
 		}
 		//Leichter Stärke Buff
@@ -86,9 +92,10 @@ class Skills
 			System.out.println(textAngreifer + " hat seine Starke um 1 erhoht");
 		}
 		//Leichter Heal
-		else if (skillNr.equals("4"))
+		else if (skillNr.equals("4") && manaAngreifer >= 10)
 		{
 			heal = 10;
+			manaAngreifer -= 10;
 			if ((curHpAngreifer + heal) > maxHpAngreifer)
 			{
 				curHpAngreifer = maxHpAngreifer;

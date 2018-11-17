@@ -18,6 +18,7 @@ class Status
 		System.out.println("Status Spieler");
 		System.out.println("Name:"  + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + player.name);
 		System.out.println("HP:" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + player.curHp + "/" + player.maxHp);
+		System.out.println("Mana:" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + player.mana);
 		System.out.println("Schild:" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + player.shield);
 		System.out.println("Starke:" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + player.curStr);
 		System.out.println("Angriffsgeschwindigkeit: " + "\t" + player.curAs);

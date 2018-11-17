@@ -7,6 +7,7 @@ class DND2
 	//Variablen
 	int charExit = 1;
 	int combatExit = 1;
+	int shopExit = 1;
 	int event;
 	int runde = 1;
 	int monsterArt;
@@ -15,7 +16,7 @@ class DND2
 
 
 	//Menu Objekte
-	String hauptMenu,combatMenu,eingabeKampf;
+	String hauptMenu,eingabeKampf, shopInput;
 	String trenner = "------------------------------------";
 	
 	//Objekte
@@ -133,6 +134,51 @@ class DND2
 			}
 
 			//Shop
+			else if (event == 2) {
+				System.out.println("\n" + "Willkommen zum Shop" + "\n");
+				System.out.println(trenner);
+				while(shopExit > 0) {
+					System.out.println("Du hast " + player.gold + " Gold");
+					System.out.println("\n" + "1. Staerke Trank (5 G)" + "\n" + "2. Lebens Trank (5 G)" + "\n" + "3. Exit");
+					shopInput = scan.nextLine();
+					System.out.println(trenner);
+
+					if (shopInput.equals("1")) {
+						if (player.gold >= 5) {
+							player.gold = player.gold - 5;
+							player.str = player.str + 1;
+							System.out.println("Du fuhlst dich Starker");
+						}
+						else {
+							System.out.println("Du hast nicht genug Gold" + "\n");
+						}
+					}
+
+					else if (shopInput.equals("2")) {
+						if (player.gold >= 5 && !(player.maxHp == player.curHp)) {
+							player.gold = player.gold - 5;
+
+							if ( (player.curHp + 10) > player.maxHp) {
+								player.curHp = player.maxHp;
+								System.out.println("Du hast deine Maximale Lebenspunktanzahl erreicht");
+							}
+							else {
+								player.curHp = player.curHp + 10;
+								System.out.println("Du wurdest um 10 Lebenspunkte geheilt");
+							}
+
+						}
+						else {
+							System.out.println("Du hast nicht genug Gold oder deine Maximalen Lebenspunkte bereits erreicht");
+						}
+					}
+					else if (shopInput.equals("3")) {
+						shopExit = 0;
+					}
+
+				}
+				shopExit = 1;
+			}
 		}
 		
 	}
