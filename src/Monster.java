@@ -1,13 +1,15 @@
 class Monster{
 	String name;
 
-	double maxHp;
-	double curHp;
-	double str;
-	double curStr;
-	double as;
-	double curAs;
-	double shield;
+	int maxHp;
+	int curHp;
+	int str;
+	int curStr;
+	int as;
+	int curAs;
+	int shield;
+	int mana;
+	int gold;
 
 	public Monster(int monsterArt){
 
@@ -20,6 +22,8 @@ class Monster{
 			curStr = 5;
 			as = 1;
 			curAs = 1;
+			gold = 15;
+			mana = 1000;
 		}
 		if (monsterArt == 2)
 		{
@@ -31,6 +35,8 @@ class Monster{
 			curStr = 5;
 			as = 1;
 			curAs = 1;
+			gold = 10;
+			mana = 1000;
 		}
 
 	}

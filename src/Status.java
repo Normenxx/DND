@@ -2,32 +2,32 @@ class Status
 {
 	String trenner = "------------------------------------";
 	
-	public void menu(String name, int gold, double curHp, double maxHp, double str, double as)
+	public void menu(Player player)
 	{
 		System.out.println("Status Spieler");
-		System.out.println("Name:" + "\t"  + "\t" + "\t" + "\t" + "\t" + name);
-		System.out.println("Gold:" + "\t"  + "\t" + "\t" + "\t" + "\t" + gold + "\n");
-		System.out.println("HP:" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + curHp + "/" + maxHp);
-		System.out.println("Starke:" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + str);
-		System.out.println("Angriffsgeschwindigkeit: " + "\t" + as);
+		System.out.println("Name:" + "\t"  + "\t" + "\t" + "\t" + "\t" + player.name);
+		System.out.println("Gold:" + "\t"  + "\t" + "\t" + "\t" + "\t" + player.gold + "\n");
+		System.out.println("HP:" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + player.curHp + "/" + player.maxHp);
+		System.out.println("Starke:" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + player.str);
+		System.out.println("Angriffsgeschwindigkeit: " + "\t" + player.as);
 		System.out.println("\n" + trenner);
 	}
 
-	public void kampf(String namePlayer, double curHpPlayer, double maxHpPlayer, double shieldPlayer, double strPlayer, double asPlayer,String nameMonster, double curHpMonster, double maxHpMonster, double shieldMonster, double strMonster, double asMonster)
+	public void kampf(Player player, Monster monster)
 	{
 		System.out.println("Status Spieler");
-		System.out.println("Name:"  + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + namePlayer);
-		System.out.println("HP:" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + curHpPlayer + "/" + maxHpPlayer);
-		System.out.println("Schild:" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + shieldPlayer);
-		System.out.println("Starke:" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + strPlayer);
-		System.out.println("Angriffsgeschwindigkeit: " + "\t" + asPlayer);
+		System.out.println("Name:"  + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + player.name);
+		System.out.println("HP:" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + player.curHp + "/" + player.maxHp);
+		System.out.println("Schild:" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + player.shield);
+		System.out.println("Starke:" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + player.curStr);
+		System.out.println("Angriffsgeschwindigkeit: " + "\t" + player.curAs);
 
 		System.out.println("\n"+ "Status Monster");
-		System.out.println("Name:" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + nameMonster);
-		System.out.println("HP:" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + curHpMonster + "/" + maxHpMonster);
-		System.out.println("Schild:" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + shieldMonster);
-		System.out.println("Starke:" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + strMonster);
-		System.out.println("Angriffsgeschwindigkeit: " + "\t" + asMonster);
+		System.out.println("Name:" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + monster.name);
+		System.out.println("HP:" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + monster.curHp + "/" + monster.maxHp);
+		System.out.println("Schild:" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + monster.shield);
+		System.out.println("Starke:" + "\t" + "\t" + "\t" + "\t" + "\t" + "\t" + monster.curStr);
+		System.out.println("Angriffsgeschwindigkeit: " + "\t" + monster.curAs);
 
 		System.out.println("\n" + trenner);
 

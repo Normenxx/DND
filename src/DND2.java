@@ -1,4 +1,3 @@
-import java.awt.Point;
 import java.util.*;
 class DND2
 {
@@ -8,7 +7,7 @@ class DND2
 	//Variablen
 	int charExit = 1;
 	int combatExit = 1;
-	int event = 1;
+	int event;
 	int runde = 1;
 	int monsterArt;
 	int alterSkill =  100;
@@ -30,11 +29,11 @@ class DND2
 	System.out.println("Willkommen zum Dungeon");
 	// Spieler wahlt Klasse
 	while ( charExit > 0)
-		{
-		System.out.println("W�hlen Sie ihren Namen: ");
+	{
+		System.out.println("Wahlen Sie ihren Namen: ");
 		player.name = scan.nextLine();
 
-		System.out.println("\n W�hlen Sie ihre Klasse :" + "\n 1. Krieger " + "2. Work in progress");
+		System.out.println("\n Wahlen Sie ihre Klasse :" + "\n 1. Krieger " + "2. Work in progress");
 		player.klasse = scan.nextLine();
 		
 		if (player.klasse.equals("1")) 
@@ -43,11 +42,12 @@ class DND2
 			player.curHp = player.maxHp;
 			player.str = 5;
 			player.as = 1;
+			player.mana = 100;
 			charExit = 0;
 			}
-		}
+	}
 	
-	// Spieler ist am Leben und im Hauptmen�
+	// Spieler ist am Leben und im Hauptmenu
 	while ( player.curHp > 0) {
 		System.out.println("\n" + "Du bist im Hauptmenu");
 		
@@ -61,13 +61,15 @@ class DND2
 		// Status
 		if (hauptMenu.equals("1"))
 		{
-		    status.menu(player.name, player.gold, player.curHp, player.maxHp, player.str, player.as);
+		    status.menu(player);
 		    player.bild();
 		}
 		
 		// Nachster Raum
 		else if (hauptMenu.equals("2"))
 		{
+		    event = rand.nextInt(2)+1;
+
 			//Monsterraum
 			if (event == 1)
 			{
@@ -79,7 +81,7 @@ class DND2
 				
 				//Erstellung des Monster
 				monsterArt = rand.nextInt(2)+1;
-                Monster monster = new Monster(monsterArt);
+				Monster monster = new Monster(monsterArt);
 				
 				// Kampf
 				while (combatExit > 0 && !(monster.curHp <= 0) && !(player.curHp <= 0))
@@ -93,14 +95,14 @@ class DND2
 							// 3 Buff
 					}
 					while
-					(		monsterSkill == 2 && alterSkill == 2 ||  				 			// Das Monster darf nicht 2 mal hintereinander Blocken
-							monsterSkill == 3 && !(alterSkill == 2)							// Das Monster darf sich nicht Buffen ohne Verteidigung
+					(		(monsterSkill == 2 && alterSkill == 2) ||  				 			// Das Monster darf nicht 2 mal hintereinander Blocken
+							(monsterSkill == 3 && (!(alterSkill == 2) || runde==0))				    // Das Monster darf sich nicht Buffen ohne Verteidigung
 					);
 
 					alterSkill = monsterSkill;
 
 					//Status Kampf
-					status.kampf(player.name,player.curHp, player.maxHp, player.shield, player.curStr, player.curAs,monster.name,monster.curHp, monster.maxHp, monster.shield, monster.curStr, monster.curAs);
+					status.kampf(player, monster);
 					//------------------------------
 					System.out.println("Runde: " + runde++);
 					System.out.print("Das Monster plant ");
@@ -113,51 +115,24 @@ class DND2
 					System.out.println(trenner);
 					//Spieler greift an
 					System.out.println("\n" + "Der Spieler verwendet einen Skill");
-					skills.kampf(true , eingabeKampf, player.curHp , player.maxHp , player.shield, player.curStr , player.curAs , monster.curHp , monster.maxHp , monster.shield, monster.str , monster.as);
-					
-							//Spieler Werte �nderung
-							player.curHp = skills.PlayerCurHp();
-							player.maxHp = skills.PlayerMaxHp();
-							player.shield = skills.PlayerShield();
-							player.curStr = skills.PlayerCurStr();
-							player.curAs = skills.PlayerCurAs();
-							
-							//Monster Werte �nderung
-							monster.curHp = skills.MonsterCurHp();
-							monster.maxHp = skills.MonsterMaxHp();
-							monster.shield = skills.MonsterShield();
-							monster.curStr = skills.MonsterCurStr();
-							monster.curAs = skills.MonsterCurAs();
-
+					skills.kampfobj(true , eingabeKampf, player, monster);
 					monster.shield = 0;
 
 					//Monster greift an
 					System.out.println("\n" + "Das Monster verwendet einen Skill");
-					skills.kampf(false , monsterSkill.toString(),player.curHp , player.maxHp , player.shield, player.curStr , player.curAs , monster.curHp , monster.maxHp , monster.shield, monster.str , monster.as);
-					
-							//Spieler Werte �nderung
-							player.curHp = skills.PlayerCurHp();
-							player.maxHp = skills.PlayerMaxHp();
-							player.shield = skills.PlayerShield();
-							player.curStr = skills.PlayerCurStr();
-							player.curAs = skills.PlayerCurAs();
-							
-							//Monster Werte �nderung
-							monster.curHp = skills.MonsterCurHp();
-							monster.maxHp = skills.MonsterMaxHp();
-                           monster.shield = skills.MonsterShield();
-							monster.curStr = skills.MonsterCurStr();
-							monster.curAs = skills.MonsterCurAs();
-
+					skills.kampfobj(false , monsterSkill.toString(), player, monster);
 					System.out.println("\n" + trenner + "\n");
 
 					player.shield = 0;
 				}
 
-                //Reset vom Kampf
-                combatExit = 1;
+                //Reset vom KampfcombatExit
+				combatExit = 1;
 				runde = 1;
+				player.gold += monster.gold;
 			}
+
+			//Shop
 		}
 		
 	}

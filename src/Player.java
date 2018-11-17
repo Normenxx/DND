@@ -2,14 +2,14 @@ class Player
 {
 	String name,klasse;
 	
-	double maxHp;
-	double curHp;
-	double str;
-	double curStr;
-	double as;
-	double curAs;
-	double shield;
-
+	int maxHp;
+	int curHp;
+	int str;
+	int curStr;
+	int as;
+	int curAs;
+	int shield;
+	int mana;
 	int gold;
 
 	public void bild()
