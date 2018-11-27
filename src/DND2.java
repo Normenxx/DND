@@ -11,12 +11,12 @@ class DND2
 	int event;
 	int runde = 1;
 	int monsterArt;
-	int alterSkill =  100;
+	int alterSkill =  100; //Speichert den zuletzt verwendeten Angriff um Regeln zu benutzen
 	Integer monsterSkill;
-
+	int score = 0; //Zahlt die besiegten Monster
 
 	//Menu Objekte
-	String hauptMenu,eingabeKampf, shopInput;
+	String hauptMenu,eingabeKampf, shopInput; // Hauptgrund wieso String verwendet wird ist um das Beenden des Programmes ungewollt durch eine falsche Eingabe zu Beenden (Fehlermeldung) zu verhindern.
 	String trenner = "------------------------------------";
 	
 	//Objekte
@@ -28,24 +28,32 @@ class DND2
 	
 	
 	System.out.println("Willkommen zum Dungeon");
-	// Spieler wahlt Klasse
+	// Spieler wahlt eine Klasse
 	while ( charExit > 0)
 	{
 		System.out.println("Wahlen Sie ihren Namen: ");
 		player.name = scan.nextLine();
 
-		System.out.println("\n Wahlen Sie ihre Klasse :" + "\n 1. Krieger " + "2. Work in progress");
+		System.out.println("\n Wahlen Sie ihre Klasse :" + "\n 1. Krieger " + "2. Ritter");
 		player.klasse = scan.nextLine();
 		
-		if (player.klasse.equals("1")) 
-			{
+		if (player.klasse.equals("1")) {
 			player.maxHp = 20;
 			player.curHp = player.maxHp;
-			player.str = 5;
+			player.str = 8;
 			player.as = 1;
 			player.mana = 100;
 			charExit = 0;
-			}
+		}
+		else if (player.klasse.equals("2"))
+		{
+			player.maxHp = 25;
+			player.curHp = player.maxHp;
+			player.str = 4;
+			player.as = 1;
+			player.mana = 100;
+			charExit = 0;
+		}
 	}
 	
 	// Spieler ist am Leben und im Hauptmenu
@@ -69,6 +77,7 @@ class DND2
 		// Nachster Raum
 		else if (hauptMenu.equals("2"))
 		{
+			//Ein zufalliges Event wird generiert
 		    event = rand.nextInt(2)+1;
 
 			//Monsterraum
@@ -95,9 +104,9 @@ class DND2
 							// 2 Block
 							// 3 Buff
 					}
-					while
+					while	//Regeln fuer das Monster zum Auswaehlen von Skills
 					(		(monsterSkill == 2 && alterSkill == 2) ||  				 			// Das Monster darf nicht 2 mal hintereinander Blocken
-							(monsterSkill == 3 && (!(alterSkill == 2) || runde==0))				    // Das Monster darf sich nicht Buffen ohne Verteidigung
+							(monsterSkill == 3 && (!(alterSkill == 2) || runde==0))			   // Das Monster darf sich nicht Buffen ohne Verteidigung
 					);
 
 					alterSkill = monsterSkill;
@@ -131,6 +140,7 @@ class DND2
 				combatExit = 1;
 				runde = 1;
 				player.gold += monster.gold;
+				score = score +1;
 			}
 
 			//Shop
@@ -180,9 +190,13 @@ class DND2
 				shopExit = 1;
 			}
 		}
-		
+
+		else if (hauptMenu.equals("3"))
+		{
+			status.hilfe();
+		}
 	}
 
-	System.out.println("\n" + "Du bist gestorben" +  "\n" + "Viel Gluck beim nachsten mal");
+	System.out.println("\n" + "Du bist gestorben" +  "\n" + "Du hast " + score + " Monster getoetet." +"\n" +"Viel Gluck beim nachsten mal");
    }
 }

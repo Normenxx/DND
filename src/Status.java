@@ -49,4 +49,19 @@ class Status
 			System.out.print("sich zu heilen");
 		}
 	}
+
+	public void hilfe()
+	{
+		System.out.println("Der Spieler muss sich durch verschiedene Level Kaempfen. Wenn er in den nächsten Raum geht, besteht die Moeglichkeit einen Monsterraum zu betreten.");
+		System.out.println("Beim betreten eines Monsterraums erscheint ein zufaelliges Monster und ein Kampf beginnt.");
+		System.out.println("\n" + "Das Kampfsystem ist Rundenbasiert und hat mehrere Phasen!");
+		System.out.println("Phase 0: Status vom Monster und Spieler wird ausgegeben. Außerdem zeigt das Monster an, welche Faehigkeit es in der Phase 2 einsetzen möchten. ");
+		System.out.println("Phase 1: Der Spieler sucht eine Faehigkeit aus und verwendet diese Faehigkeit.");
+		System.out.println("Phase 2: Das Monster fuehrt eine Faehigkeit aus. (Hinweis: Falls das Monster blockt giltet dieser Schild erst für die naechste Runde)");
+
+		System.out.println("\n" + "Das Schild (Blockt Skill) vom Spieler wird erst auf 0 verfallen wenn er wieder am Zug ist (Phase 1). ");
+		System.out.println("Das gleiche gilt auch fuer das Monster, somit wird sein Schild in der Phase 2 ablaufen.");
+
+		System.out.println("\n" + "Es ist auch moeglich einen Shop zu finden. In diesem sind Tranke die den Schaden des Spielers erhoehen oder das Leben des Spielers wiederherstellen herstellen zu finden");
+	}
 }
